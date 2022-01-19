@@ -40,8 +40,6 @@ class CheckoutService
         $product = $this->find($item);
 
         $this->addToCart($product);
-
-//        $this->calculateTotal();
     }
 
     private function find(string $code): object
@@ -64,9 +62,8 @@ class CheckoutService
 
     public function calculateTotal(): float
     {
-//        $this->total = $this->cart->flatten(1)->sum('price');
-
         $groups = $this->cart->flatten(1)->groupBy('code')->all();
+
         foreach ($groups as $code => $group) {
             $rule = $this->pricing_rules[$code] ?? NULL;
             if (!is_null($rule)) {
