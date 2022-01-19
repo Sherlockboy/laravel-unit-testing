@@ -9,7 +9,7 @@ class CheckoutService
     private array $pricing_rules;
     private object $products;
     private object $cart;
-    public float $total;
+    private float $total;
 
     public function __construct(array $pricing_rules)
     {
@@ -33,6 +33,11 @@ class CheckoutService
             ]
         ]);
         $this->cart = collect();
+    }
+
+    public function get_products(): object
+    {
+        return $this->products;
     }
 
     public function scan(string $item): void

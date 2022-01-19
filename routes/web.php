@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,9 @@ Route::get('/', function () {
 Route::prefix('users')->name('users.')->group(function() {
     Route::get('/', [UserController::class, 'index'])->name('index');
     Route::post('/search', [UserController::class, 'search'])->name('search');
+});
+
+Route::prefix('products')->name('products.')->group(function() {
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/scan/{product_code}', [ProductController::class, 'scan'])->name('scan');
 });
